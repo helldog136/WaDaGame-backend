@@ -42,7 +42,7 @@ class Client:
         self.data['expires'] = expiresSeconds
         self.data['signature'] = signature
 
-        print self.data
+        #print self.data
 
     def makeRequest(self):
 
@@ -84,9 +84,10 @@ class Client:
                     for x in response[line]["pages"]:
                         names.append(response[line]["pages"][x]["usage-image"])
                         # print(data[line]["pages"][x]["usage-image"])
-
-                #print(names)
+                print("Names")
+                print names
                 return names
+                print "t'es pas cense etre la connard!"
 
 
             elif response['status'] == 710:

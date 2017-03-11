@@ -3,14 +3,14 @@ import json
 import re
 import operator
 
-def main():
+def main(upload_image_url):
     # Config
     uid = "7093"
     apikey = "838024ddaaa63db12d98ea3a16323cb6"
 
     search = Client(uid, apikey)
     #search.addImageUrl("http://i.skyrock.net/8989/70868989/pics/2813975768_1.png")
-    search.addImageUrl("http://i.imgur.com/CaFjhJB.png")
+    search.addImageUrl(upload_image_url)
     #search.addImageUrl("http://i.imgur.com/KztFRBv.jpg")
     search.makeRequestData()
     search.makeRequest()
@@ -19,9 +19,13 @@ def main():
     #print(search.data)
 
     #if 'project_id' in search.data:
-    #getGameName(search.getResults())
-
-    getGameName([u'http://download.gamezone.com/uploads/image/data/1182115/Rogue_Legacy.JPG',
+    res = search.getResults()
+    print "res : "
+    print res
+    print "------------"
+    return getGameName(res)
+"""
+    return getGameName([u'http://download.gamezone.com/uploads/image/data/1182115/Rogue_Legacy.JPG',
      u'http://i1.article.fd.zol-img.com.cn/t_s640x2000_w1/g4/M0B/05/0D/Cg-4zFTu41aIb7WWAARLe8i_NBQAAVlzwKaFzoABEuT987.jpg',
      u'https://farm4.staticflickr.com/3857/14424998087_fc2d6fa796_b.jpg',
      u'https://fanbolt-fanbolt.netdna-ssl.com/wp-content/uploads/2014/07/14454459905_2c30ec09c5_o.jpg',
@@ -115,8 +119,7 @@ def main():
      u'http://thefreecheese.com/wp-content/uploads/2014/07/14454459905_2c30ec09c5_o.jpg',
      u'http://nichegamer.net/media/2014/07/rogue-legacy-07-09-14-1.jpg',
      u'http://o.aolcdn.com/hss/storage/midas/4cd5f03b417a0e87e4ac4cdf234f9e72/200393229/rogue-legacy-PS.jpg'])
-
-
+"""
     #else:
         #print "No Project ID"
 
@@ -130,7 +133,7 @@ def parse_json():
             names.append(data[line]["pages"][x]["usage-image"])
             #print(data[line]["pages"][x]["usage-image"])
 
-    print(names)
+    # print(names)
 
 def getGameName(urls):
     print urls
@@ -196,6 +199,6 @@ def getGameName(urls):
 
     return output
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+    #print(main("http://i.imgur.com/CaFjhJB.png"))
     #parse_json()
