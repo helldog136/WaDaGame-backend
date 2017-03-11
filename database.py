@@ -8,7 +8,7 @@ class SearchResult(object):
         self.correspondingTag = None
 
     def addData(self, tag, certitude):
-        if not self.tags[tag]:
+        if tag not in self.tags:
             self.tags[tag] = certitude
         else:
             self.tags[tag] = transformations.getTransformation(self.tags[tag], certitude)
@@ -18,10 +18,12 @@ class SearchResult(object):
 
     def getHighestCertitude(self):
         return self.highestCertitude
+
     def getCorrespondingTag(self):
         return self.correspondingTag
+
     def getData(self):
-        return sorted(self.tags.keys, key=(lambda x, y: self.tags[x] > self.tags[y]))
+        return sorted(self.tags.items(), key=(lambda x, y: x[1] > y[1])) if len(self.tags.keys()) > 1 else self.tags.items()
 
 
 class Database(object):
@@ -29,7 +31,7 @@ class Database(object):
         self.db = {}
 
     def addData(self, client, tag, certitude):
-        if not self.db[client]:
+        if client not in self.db:
             self.db[client] = SearchResult()
         self.db[client].addData(tag, certitude)
         return self.db[client].getHighestCertitude()
@@ -42,3 +44,6 @@ class Database(object):
 
     def getResults(self, client):
         return self.db[client].getData()
+
+    def hasClient(self, appId):
+        return appId in self.db
