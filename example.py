@@ -147,9 +147,54 @@ def getGameName(urls):
                 topterms[word] = 1
     #print topterms
     sortedterms = sorted(topterms.items(), key=operator.itemgetter(1), reverse=True)
+    biggestDrop = 0
+    biggestDropLoc = 0
+    prec = 0
+    for i in range(1,len(sortedterms)):
+        drop = sortedterms[prec][1] - sortedterms[i][1]
+        if (drop > biggestDrop):
+            biggestDrop = drop
+            biggestDropLoc = prec
+        prec = i
+    print biggestDrop
+    print biggestDropLoc
     print sortedterms
+    gameNameList= sortedterms[0: biggestDropLoc + 1]
 
+    gameName = ""
+    for i in gameNameList:
+        gameName += i[0] + " "
+    print gameName
 
+    print "FULL NAME (with The)"
+    start = len(filenamewords)
+    end = 0
+    for url in urls:
+        url = url.encode('utf-8')
+        filename = url.split('/')[-1].split('#')[0].split('?')[0].split(".")[0]
+        cleanfilename = re.sub('[^0-9a-zA-Z]+', ' ', filename)
+        filenamewords = cleanfilename.split()
+        gameNameArray = []
+        for i in gameNameList:
+            gameNameArray.append(i[0])
+        if set(gameNameArray).issubset(set(filenamewords)):
+            for word in gameNameList:
+                if len([i for i, x in enumerate(gameNameList) if x == word]) == 1:
+                    if gameNameList.index(word) < start:
+                        start = gameNameList.index(word)
+                    if gameNameList.index(word) > end:
+                        end = gameNameList.index(word)
+            break
+    print str(start) + " " + str(end) + " --> " + str(gameNameList[start:end + 1])
+
+    output = ""
+    for i in gameNameList[start:end + 1]:
+        output += i[0]
+
+    print "output of getGameName()"
+    print output
+
+    return output
 
 if __name__ == "__main__":
     main()
