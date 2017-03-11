@@ -98,9 +98,15 @@ class Client:
             elif response['status'] == 755:
                 print "No Results for image"
 
+            else:
+                print "In else"
+                print response['status']
+                print response
+
         except StandardError, err:
             print err
             self.project_id = None
+
 
     def save_json(self, json_object):
         with open("./json.txt", "w") as r:

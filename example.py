@@ -5,8 +5,11 @@ import operator
 
 def main(upload_image_url):
     # Config
-    uid = "7093"
-    apikey = "838024ddaaa63db12d98ea3a16323cb6"
+    #uid = "7093"
+    #apikey = "838024ddaaa63db12d98ea3a16323cb6"
+    #Benoit
+    uid = "7092"
+    apikey = "59189a0213476cc2b9396bca90e7f750"
 
     search = Client(uid, apikey)
     #search.addImageUrl("http://i.skyrock.net/8989/70868989/pics/2813975768_1.png")
@@ -23,7 +26,10 @@ def main(upload_image_url):
     print "res : "
     print res
     print "------------"
-    return getGameName(res)
+    if res is None:
+        print" Try again, you have been kicked"
+    else:
+        return getGameName(res)
 """
     return getGameName([u'http://download.gamezone.com/uploads/image/data/1182115/Rogue_Legacy.JPG',
      u'http://i1.article.fd.zol-img.com.cn/t_s640x2000_w1/g4/M0B/05/0D/Cg-4zFTu41aIb7WWAARLe8i_NBQAAVlzwKaFzoABEuT987.jpg',
