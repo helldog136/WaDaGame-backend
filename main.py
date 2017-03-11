@@ -10,7 +10,6 @@ if __name__ == "__main__":
 
     db = database.Database()
 
-
     @app.route('/<appId>', methods=['POST'])
     def addImage(appId):
         if request.headers['Content-Type'] == 'application/octet-stream':
