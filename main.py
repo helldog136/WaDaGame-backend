@@ -17,9 +17,9 @@ def addImage(appId):
 
 @app.route('/<appId>', methods=['GET'])
 def getResult(appId):
-    t,c = db.removeClient(appId)
-
-    return Response(status=200, response="OK")
+    info = db.getResults(appId)
+    t, c = db.removeClient(appId)
+    return Response(status=200, response="{\"highest\":{\"tag\":\""+t+"\", \"certitude\":"+c+"},\"detail\":"+str(info)+"}")
 
 
 app.run(port=4242)

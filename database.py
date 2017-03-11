@@ -20,7 +20,8 @@ class SearchResult(object):
         return self.highestCertitude
     def getCorrespondingTag(self):
         return self.correspondingTag
-
+    def getData(self):
+        return sorted(self.tags.keys, key=(lambda x, y: self.tags[x] > self.tags[y]))
 
 
 class Database(object):
@@ -38,3 +39,6 @@ class Database(object):
         t = self.db[client].getCorrespondingTag()
         self.db[client] = None
         return t, c
+
+    def getResults(self, client):
+        return self.db[client].getData()
