@@ -1,5 +1,7 @@
 from incandescent import Client
 import json
+import re
+
 
 def main():
     # Config
@@ -17,7 +19,7 @@ def main():
     #print(search.data)
 
     #if 'project_id' in search.data:
-    url_names = search.getResults()
+    getGameName(search.getResults())
 
     #else:
         #print "No Project ID"
@@ -34,7 +36,19 @@ def parse_json():
 
     print(names)
 
-
+def getGameName(urls):
+    print urls
+    topterms = {}
+    for url in urls:
+        filename = url.split('/')[-1].split('#')[0].split('?')[0].split(".")[0]
+        cleanfilename = re.sub('[^0-9a-zA-Z]+', ' ', filename)
+        filenamewords = cleanfilename.split()
+        for word in filenamewords:
+            if (topterms.has_key(word)):
+                topterms[word] += 1
+            else:
+                topterms[word] = 1
+    print topterms
 
 if __name__ == "__main__":
     main()
