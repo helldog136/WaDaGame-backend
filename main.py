@@ -25,7 +25,7 @@ if __name__ == "__main__":
                 ocv.extractScreen("./" + str(appId) + ".jpg")
             except Exception as e:
                 pass
-            
+
             # Get the tag
             tag = analyser.getResult("./" + str(appId) + ".jpg")
 

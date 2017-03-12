@@ -9,6 +9,8 @@ class SearchResult(object):
         self.size = 0
 
     def addData(self, tag):
+        if tag is None:
+            return
         self.size += 1
         if tag not in self.tags:
             self.tags[tag] = 1
@@ -34,6 +36,8 @@ class Database(object):
         self.db = {}
 
     def addData(self, client, tag):
+        if tag is None:
+            return
         if client not in self.db:
             self.db[client] = SearchResult()
         self.db[client].addData(tag)
