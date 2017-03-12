@@ -4,6 +4,7 @@ from flask import Flask, request, Response
 import database
 import analyser
 import os
+import opencv as ocv
 
 
 if __name__ == "__main__":
@@ -18,6 +19,9 @@ if __name__ == "__main__":
             f = open('./' + str(appId) + '.jpg', 'wb')
             f.write(request.data)
             f.close()
+
+            # Extract screen from picture
+            ocv.extractScreen("./" + str(appId) + ".jpg")
 
             # Get the tag
             tag = analyser.getResult("./" + str(appId) + ".jpg")
