@@ -50,11 +50,11 @@ def findRectangles(src):
                 contours, hierarchy = val
             else:
                 im2, contours, hierarchy = val
-            
+
             for contour in contours:
-                arcLen = cv2.arcLength(contour, True) * 0.02;
+                arcLen = cv2.arcLength(contour, True) * 0.02
                 # Approximate polygonal curves.
-                approx = cv2.approxPolyDP(contour, arcLen, True);
+                approx = cv2.approxPolyDP(contour, arcLen, True)
 
                 if (isRectangle(approx, srcArea)):
                     rectangles.append(approx)
