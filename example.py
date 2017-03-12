@@ -84,4 +84,10 @@ def getGameName(urls):
     for i in gameNameList[start:end + 1]:
         output += i[0] + " "
 
+    print "Number of links found: " + str(len(urls))
+    print "URLs: " + str(urls)
+    print "Sorted terms: " + str(sortedterms)
+    print "List of main terms: " + str(gameNameList)
+    print "RESULT: " + output
+
     return output
