@@ -52,4 +52,4 @@ if __name__ == "__main__":
             return Response(status=404, response="ClientID not found, maybe you forgot to send images for analysis before?")
 
 
-    app.run(port=4242)
+    app.run(host= '0.0.0.0', port=4242)
