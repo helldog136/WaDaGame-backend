@@ -20,9 +20,12 @@ if __name__ == "__main__":
             f.write(request.data)
             f.close()
 
-            # Extract screen from picture
-            ocv.extractScreen("./" + str(appId) + ".jpg")
-
+            try:
+                # Extract screen from picture
+                ocv.extractScreen("./" + str(appId) + ".jpg")
+            except Exception as e:
+                pass
+            
             # Get the tag
             tag = analyser.getResult("./" + str(appId) + ".jpg")
 
