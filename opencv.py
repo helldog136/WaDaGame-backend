@@ -77,7 +77,7 @@ def isRectangle(polygon, srcArea):
 
     area = abs(cv2.contourArea(polygon))
 
-    if area < srcArea * 0.10 or area > srcArea * 0.8:
+    if area < srcArea * 0.10 or area > srcArea * 0.95:
         return False
 
     if not cv2.isContourConvex(polygon):
