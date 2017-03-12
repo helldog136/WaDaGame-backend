@@ -83,18 +83,16 @@ def train():
     # batches of augmented image data
     train_generator = train_datagen.flow_from_directory(
         './trainingImporter/training/',  # this is the target directory
-        target_size=(3, 150, 150),  # all images will be resized to 150x150
+        target_size=(None, 150, 150, 3),  # all images will be resized to 150x150
         batch_size=32,
-        class_mode='categorical',
-        classes=os.listdir("./trainingImporter/training"))
+        class_mode='categorical')
 
     # this is a similar generator, for validation data
     validation_generator = test_datagen.flow_from_directory(
-        './trainingImporter/training/',
-        target_size=(3, 150, 150),
+        './trainingImporter/validation/',
+        target_size=(None, 150, 150, 3),
         batch_size=32,
-        class_mode='categorical',
-        classes=os.listdir("./trainingImporter/training"))
+        class_mode='categorical')
 
     model.fit_generator(
         train_generator,
