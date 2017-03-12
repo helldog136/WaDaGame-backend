@@ -45,6 +45,7 @@ def findRectangles(src):
             else:
                 threshold = int((l + 1) * 255 / N);
                 _, gray = cv2.threshold(gray0, threshold, 255, cv2.THRESH_BINARY)
+            print len(cv2.findContours(gray.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE))
             im2, contours, hierarchy = cv2.findContours(gray.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             for contour in contours:
                 arcLen = cv2.arcLength(contour, True) * 0.02;
