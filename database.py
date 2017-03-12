@@ -16,7 +16,7 @@ class SearchResult(object):
             self.tags[tag] = 1
         else:
             self.tags[tag] += 1
-        cert = self.tags[tag]/float(self.size+10)
+        cert = self.tags[tag]/float(self.size+3)
         if cert > self.highestCertitude:
             self.highestCertitude = cert
             self.correspondingTag = tag
@@ -28,7 +28,9 @@ class SearchResult(object):
         return self.correspondingTag
 
     def getData(self):
-        return sorted(self.tags.items(), key=(lambda x, y: x[1] > y[1])) if len(self.tags.keys()) > 1 else self.tags.items()
+        return map((lambda x: (x[0], x[1]/float(self.size+3.0))),
+                   sorted(self.tags.items(), key=(lambda x, y: x[1] > y[1])) if len(self.tags.keys()) > 1
+                                                                             else self.tags.items())
 
 
 class Database(object):

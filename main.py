@@ -24,7 +24,7 @@ if __name__ == "__main__":
                 # Extract screen from picture
                 ocv.extractScreen("./" + str(appId) + ".jpg")
             except Exception as e:
-                pass
+                print "ERROR while cropping screen, using full image instead"
 
             # Get the tag
             tag = analyser.getResult("./" + str(appId) + ".jpg")

@@ -127,3 +127,5 @@ def extractScreen(imgPath):
     M = cv2.getPerspectiveTransform(pts1, pts2)
     dst = cv2.warpPerspective(img, M, (diff_x, diff_y))
     cv2.imwrite(imgPath, dst)
+    print "Screen Extracted!"
+
