@@ -44,10 +44,10 @@ if __name__ == "__main__":
         if db.hasClient(appId):
             info = db.getResults(appId)
             t, c = db.removeClient(appId)
-            return Response(status=200, response="{\"highest\":{\"tag\":\"" + str(t) + "\", \"certitude\":" +
+            return Response(status=200, response="{\"tag\":\"" + str(t) + "\", \"certitude\":" +
                                                  str(c) + ", \"steam\": \"http://store.steampowered.com/search/?term=" +
                                                  str(t).replace("?", "").replace("%", "").replace("/", " ")
-                                                 .replace(":", " ").replace(" ", "+") + "\"},\"detail\":[" +
+                                                 .replace(":", " ").replace(" ", "+") + "\",\"detail\":[" +
                                                  ("{\"tag\":\""+i[0]+"\",\"certitude\":"+i[1] for i in info) + "]}")
         else:
             return Response(status=404, response="ClientID not found, maybe you forgot to send images for analysis before?")
