@@ -120,7 +120,9 @@ def extractScreen(imgPath):
     img = cv2.resize(img, (img.shape[1] // 4, img.shape[0] // 4))
 
     rect = findRectangle(img)
+    print 1, rect
     rect = np.array(rect).reshape((-1, 1, 2)).astype(np.int32)
+    print 2, rect
 
     rect = sortRect(rect)
     diff_x = rect[1][0] - rect[0][0]
