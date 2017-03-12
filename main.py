@@ -47,7 +47,8 @@ if __name__ == "__main__":
             return Response(status=200, response="{\"highest\":{\"tag\":\"" + str(t) + "\", \"certitude\":" +
                                                  str(c) + ", \"steam\": \"http://store.steampowered.com/search/?term=" +
                                                  str(t).replace("?", "").replace("%", "").replace("/", " ")
-                                                 .replace(":", " ").replace(" ", "+") + "\"},\"detail\":" + str(info) + "}")
+                                                 .replace(":", " ").replace(" ", "+") + "\"},\"detail\":[" +
+                                                 ("{\"tag\":\""+i[0]+"\",\"certitude\":"+i[1] for i in info) + "]}")
         else:
             return Response(status=404, response="ClientID not found, maybe you forgot to send images for analysis before?")
 
