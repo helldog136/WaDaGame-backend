@@ -1,4 +1,3 @@
-# !/usr/bin/python
 from hashlib import sha1
 import urllib
 import hmac
@@ -42,8 +41,6 @@ class Client:
         self.data['expires'] = expiresSeconds
         self.data['signature'] = signature
 
-        #print self.data
-
     def makeRequest(self):
 
         try:
@@ -83,24 +80,19 @@ class Client:
                 for line in response:
                     for x in response[line]["pages"]:
                         names.append(response[line]["pages"][x]["usage-image"])
-                        # print(data[line]["pages"][x]["usage-image"])
-                print("Names")
-                print names
                 return names
-                print "t'es pas cense etre la connard!"
 
 
             elif response['status'] == 710:
                 print "Waiting ... ", WAIT_TIME, " Seconds"
                 time.sleep(WAIT_TIME)
-                self.getResults()  # Retry
+                return self.getResults()  # Retry
 
             elif response['status'] == 755:
                 print "No Results for image"
 
             else:
-                print "In else"
-                print response['status']
+                print "Erreur " + response['status']
                 print response
 
         except StandardError, err:
